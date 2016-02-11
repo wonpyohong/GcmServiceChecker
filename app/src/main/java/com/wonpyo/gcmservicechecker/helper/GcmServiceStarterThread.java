@@ -1,4 +1,4 @@
-package com.wonpyo.gcmservicechecker;
+package com.wonpyo.gcmservicechecker.helper;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.wonpyo.gcmservicechecker;
+package com.wonpyo.gcmservicechecker.helper;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.wonpyo.gcmservicechecker.receiver.AlarmReceiver;
 
 /**
  * Created by wonpyohong on 2016. 2. 11..

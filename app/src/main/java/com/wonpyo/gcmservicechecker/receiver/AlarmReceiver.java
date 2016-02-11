@@ -1,9 +1,10 @@
-package com.wonpyo.gcmservicechecker;
+package com.wonpyo.gcmservicechecker.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.wonpyo.gcmservicechecker.helper.GcmServiceChecker;
 import com.wonpyo.gcmservicechecker.db.LogLocalStore;
 
 /**

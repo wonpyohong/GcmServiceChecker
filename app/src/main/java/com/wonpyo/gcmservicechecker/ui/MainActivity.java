@@ -1,4 +1,4 @@
-package com.wonpyo.gcmservicechecker;
+package com.wonpyo.gcmservicechecker.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -7,6 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.wonpyo.gcmservicechecker.R;
+import com.wonpyo.gcmservicechecker.helper.GcmServiceChecker;
+import com.wonpyo.gcmservicechecker.helper.GcmServiceMonitor;
+import com.wonpyo.gcmservicechecker.helper.GcmServiceStarterThread;
 
 public class MainActivity extends AppCompatActivity {
     GcmServiceMonitor gcmServiceMonitor;
