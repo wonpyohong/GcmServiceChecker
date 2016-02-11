@@ -12,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -78,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        GoogleCloudMessaging.getInstance(getApplicationContext()).register("2776479566");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+
             return true;
         }
 
