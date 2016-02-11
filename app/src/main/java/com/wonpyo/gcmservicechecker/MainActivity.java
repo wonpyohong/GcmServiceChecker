@@ -52,7 +52,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGcmServiceIfNotRunningNow(View view) {
-        GcmServiceStarterThread gcmServiceStarterThread = new GcmServiceStarterThread(MainActivity.this);
-        gcmServiceStarterThread.start();
+        GcmServiceChecker gcmServiceChecker = new GcmServiceChecker(MainActivity.this);
+        if (gcmServiceChecker.isRunningGcmService()) {
+            Snackbar.make(view, "GcmService is already running, so nothing happened", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else {
+            GcmServiceStarterThread gcmServiceStarterThread = new GcmServiceStarterThread(MainActivity.this);
+            gcmServiceStarterThread.start();
+
+            Snackbar.make(view, "GcmService is not running, so GcmService has started:\n" + gcmServiceChecker.getClassNameOfGcmService(), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 }
