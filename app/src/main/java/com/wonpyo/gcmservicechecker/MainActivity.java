@@ -1,13 +1,16 @@
 package com.wonpyo.gcmservicechecker;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +29,38 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        fab.setOnClickListener(onClickListener);
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String packageName = getClassNameOfGcmService();
+            if (packageName != null) {
+                Snackbar.make(view, "GcmService is running: " + packageName, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            } else {
+                Snackbar.make(view, "GcmService is not running", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+
+        private String getClassNameOfGcmService() {
+            ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+
+            for (ActivityManager.RunningServiceInfo runningServiceInfo : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+                String packageName = runningServiceInfo.service.getClassName();
+
+                Log.d("HWP", "packageName: " + packageName);
+                if (packageName.contains("GcmService")) {
+                    return packageName;
+                }
+            }
+
+            return null;
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
