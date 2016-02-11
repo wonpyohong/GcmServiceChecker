@@ -1,20 +1,13 @@
 package com.wonpyo.gcmservicechecker;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,43 +19,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         fab.setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String packageName = getClassNameOfGcmService();
-            if (packageName != null) {
-                Snackbar.make(view, "GcmService is running: " + packageName, Snackbar.LENGTH_LONG)
+            GcmServiceChecker gcmServiceChecker = new GcmServiceChecker(MainActivity.this);
+            if (gcmServiceChecker.isRunningGcmService()) {
+                Snackbar.make(view, "GcmService is running:\n" + gcmServiceChecker.getClassNameOfGcmService(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             } else {
                 Snackbar.make(view, "GcmService is not running", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        }
-
-        private String getClassNameOfGcmService() {
-            ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-
-            for (ActivityManager.RunningServiceInfo runningServiceInfo : activityManager.getRunningServices(Integer.MAX_VALUE)) {
-                String packageName = runningServiceInfo.service.getClassName();
-
-                Log.d("HWP", "packageName: " + packageName);
-                if (packageName.contains("GcmService")) {
-                    return packageName;
-                }
-            }
-
-            return null;
         }
     };
 
@@ -82,16 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        GoogleCloudMessaging.getInstance(getApplicationContext()).register("2776479566");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }.start();
+            GcmServiceStarterThread gcmServiceStarterThread = new GcmServiceStarterThread(MainActivity.this);
+            gcmServiceStarterThread.start();
 
             return true;
         }
