@@ -23,5 +23,7 @@ public class LogLocalStore {
         db.insert(SqliteScheme.GcmServiceLog.TABLE_NAME, null, contentValues);
 
         Log.d("HWP", "isRunningGcmService: " + isRunningGcmService);
+
+        db.close();
     }
 }
