@@ -3,7 +3,8 @@ package com.wonpyo.gcmservicechecker;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
+import com.wonpyo.gcmservicechecker.db.LogLocalStore;
 
 /**
  * Created by wonpyohong on 2016. 2. 11..
@@ -12,6 +13,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         GcmServiceChecker gcmServiceChecker = new GcmServiceChecker(context);
-        Log.d("HWP", "isRunning: " + gcmServiceChecker.isRunningGcmService());
+
+        LogLocalStore logLocalStore = new LogLocalStore(context);
+        boolean isRunningGcmService = gcmServiceChecker.isRunningGcmService();
+        logLocalStore.appendLog(isRunningGcmService);
     }
 }
