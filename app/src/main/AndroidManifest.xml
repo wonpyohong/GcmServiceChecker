@@ -18,6 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        
+        <receiver
+            android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.wonpyo.gcmservicechecker.ACTION_CHECK"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

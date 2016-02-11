@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    GcmServiceMonitor gcmServiceMonitor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        gcmServiceMonitor = new GcmServiceMonitor(MainActivity.this);
     }
 
     @Override
@@ -63,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(view, "GcmService is not running, so GcmService has started:\n" + gcmServiceChecker.getClassNameOfGcmService(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
+    }
+
+    public void startMonitoring(View view) {
+        gcmServiceMonitor.startMonitoring();
+    }
+
+    public void stopMonitoring(View view) {
+        gcmServiceMonitor.stopMonitoring();
     }
 }

@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="Check that GcmService is running"
+        android:text="Check that GcmService is running now"
         android:onClick="checkGcmServiceIsRunning"/>
 
     <Button
@@ -27,4 +27,18 @@
         android:textAllCaps="false"
         android:text="Start GcmService if it's not running"
         android:onClick="startGcmServiceIfNotRunningNow"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Start monitor"
+        android:onClick="startMonitoring"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Stop monitor"
+        android:onClick="stopMonitoring"/>
 </LinearLayout>
