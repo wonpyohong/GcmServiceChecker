@@ -35,7 +35,7 @@ public class GcmServiceMonitor {
         Log.d("HWP", "startMonitoring() called");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, createIntent(), PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.cancel(pendingIntent);
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 60 * 1000, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 5 * 60 * 1000, pendingIntent);
     }
 
     public void stopMonitoring() {
