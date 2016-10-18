@@ -14,7 +14,12 @@ public class GcmServiceCheckerApplication extends Application {
 
         Stetho.initializeWithDefaults(this);
 
+<<<<<<< HEAD
         int a = 2;
         String string = "test";
+=======
+        int a = 1;
+        String string = "master";
+>>>>>>> master
     }
 }
