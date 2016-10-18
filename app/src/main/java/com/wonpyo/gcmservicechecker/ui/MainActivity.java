@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Log.d("HWP", "add log");
+        Log.d("HWP", "add log 2");
         gcmServiceMonitor = new GcmServiceMonitor(MainActivity.this);
     }
 
