@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String string = "MainActivity, test2";
+        String string = "MainActivity, test3";
         gcmServiceMonitor = new GcmServiceMonitor(MainActivity.this);
     }
 
